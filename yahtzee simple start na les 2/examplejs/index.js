@@ -47,7 +47,7 @@ let chanceScore = document.getElementById("chance");
 chanceScore.addEventListener("click", function (event) {
   //console.log("ik werk");
   //console.log(event.target);
-  chanceScore.innerText = dice.length;
+  chanceScore.innerHTML = scoreNumber();
 });
 
 // maak het skelet van een functie die sum heet
