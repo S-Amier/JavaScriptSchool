@@ -35,3 +35,5 @@ if (population >= 33000000){
 }  else {
     console.log(`${country} population is ${averagePopulation - population} below average`);
 }
+
+
