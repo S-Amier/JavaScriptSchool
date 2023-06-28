@@ -101,3 +101,14 @@ switch (mostSpokenLanguage){
     default:
         console.log("Great language too :D");
 }
+
+// LECTURE: The Conditional (Ternary) Operator
+let populationAverage;
+if(population > 33000000) {
+    populationAverage = "above";
+} else {
+    populationAverage = "below";
+}
+console.log(populationAverage);
+
+console.log(`${country}'s population is ${population > 33000000 ? "above" : "below"} average`)
