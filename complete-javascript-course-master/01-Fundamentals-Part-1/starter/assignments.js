@@ -1,3 +1,5 @@
+//JavaScript Fundamentals – Part 1
+/*
 //LECTURE: Values and Variables
 const country = "Netherlands";
 const continent = "Europe";
@@ -64,7 +66,7 @@ if (numNeightbours === 1){
 } else{
     console.log("No borders")
 }
-*/
+
 
 //LECTURE: Logical Operators
 
@@ -112,3 +114,8 @@ if(population > 33000000) {
 console.log(populationAverage);
 
 console.log(`${country}'s population is ${population > 33000000 ? "above" : "below"} average`)
+*/
+
+// JavaScript Fundamentals – Part 2
+
+// LECTURE: Functions
