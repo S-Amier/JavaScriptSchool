@@ -1,5 +1,5 @@
                //0  1  2  3  4
-let diceArray = [5, 3, 2, 5, 8];
+let diceArray = [5, 3, 2, 5, 5];
 //voeg een event toe aan het knopje, met het click event die de functie generateDice aanroept
 document.getElementById("GenerateButton").addEventListener("click", generateDice);
 //haal het divje op met het ID "Output"
@@ -20,6 +20,7 @@ let derdeWorp3 = document.getElementById("DerdeWorpDrie");
 let derdeWorp4 = document.getElementById("DerdeWorpVier");
 let derdeWorp5 = document.getElementById("DerdeWorpVijf");
 
+
 // het woordje functie, functie naam (argumenten) {scope}
 function generateDice() {
     for (let i = 0; i < diceArray.length; i++) {
@@ -33,3 +34,21 @@ function generateDice() {
     eersteWorp4.innerHTML = diceArray[3];
     eersteWorp5.innerHTML = diceArray[4];
 }
+/*let threeOfaKind = document.getElementById("ThreeOfaKind");
+
+function threeOfaKind() {
+    for (let i = 0; i <= diceArray.length - nnb; i++) {
+        let first = diceArray[i];
+        let matched = true;
+        for (let j = 1; j < nnb; j++) {
+            if (diceArray[i+j] != first) {
+                matched = false;
+                break;
+            }
+        }
+        if (matched) {
+            score = first * nnb;
+            break;
+        }
+    }
+}*/
