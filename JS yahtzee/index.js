@@ -50,6 +50,17 @@ yahtzeeScore.addEventListener("click", function() {
   yahtzee.innerText = calculateYahtzee();
 })
 
+const fullhouseScore = document.getElementById("klik");
+fullhouseScore.addEventListener("click", function() {
+  fullhouse.innerText = calculateFullhouse();
+})
+
+const kleinestraatScore = document.getElementById("klik");
+kleinestraatScore.addEventListener("click", function() {
+  kleineStraat.innerText = calculateKleineStraat();
+})
+
+
 
 // het woordje functie, functie naam (argumenten) {scope}
 function generateDice() {
@@ -64,7 +75,7 @@ function generateDice() {
 function countNumber(num) {
   let result = 0;
   // voor iedere dobbelsteen
-  for (let index = 0; index < diceArray.length; index++ ) {
+  for (let index = 0; index < diceArray.length; index++) {
   // als de dobbelsteen 2 is
     if (diceArray[index] === num) {
       result++; // result = result + 1; result += 1;
@@ -80,7 +91,7 @@ function calculateScoreForNumber(num) {
 
 function calculateScoreForChance(){
   let result = 0;
-  for (let index = 0; index < diceArray.length; index++ ) {
+  for (let index = 0; index < diceArray.length; index++) {
     result = result + diceArray[index];
   }
 
@@ -106,6 +117,37 @@ function calculateYahtzee(){
     //result = false;
     return result;
 }
+
+// Bereken Full House
+function calculateFullhouse(){
+  let result = 0;
+  if (diceArray === 3 && diceArray === 2){
+    result = 25;
+  }
+  return result;
+}
+
+// Bereken kleine straat
+function calculateKleineStraat(){
+  let index = 1, difference;
+  let result = 0;
+ 
+  while (index < diceArray.length) {
+    difference = diceArray[index - 1] - diceArray[index - 2];
+    if (Math.abs(difference) === 1 && difference === diceArray[index] - diceArray[index - 1]){
+      result = true;
+    }
+    index++
+  }
+  return result;
+    console.log(result);
+}
+
+
+
+
+
+
 
   
 
