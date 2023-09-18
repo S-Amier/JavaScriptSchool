@@ -1,9 +1,16 @@
 // variabele maken waar 5 getallen in zitten. 
 const diceArray = [1, 5, 1, 2, 3];
 //console.log(countingScore());
+document.getElementById("klik").addEventListener("click", generateDice);
 console.log(generateDice());
 
-
+// het woordje functie, functie naam (argumenten) {scope}
+function generateDice() {
+  for (let i = 0; i < diceArray.length; i++) {
+      //maakt gelijk aan een afgerond willekeurig getal tussen de 1 en 6
+      diceArray[i] = Math.floor(Math.random() * 6) + 1;
+  }
+}
 
 const onesScore = document.getElementById("klik");
 onesScore.addEventListener("click", function() {
@@ -40,6 +47,11 @@ chanceScore.addEventListener("click", function() {
   chance.innerText = calculateScoreForChance();
 })
 
+const threeOfaKindScore = document.getElementById("klik");
+threeOfaKindScore.addEventListener("click", function(){
+  threeOfaKind.innerText = calculateThreeOfaKind();
+})
+
 const fourOfaKindScore = document.getElementById("klik");
 fourOfaKindScore.addEventListener("click", function(){
   fourOfaKind.innerText = calculateFourOfaKind();
@@ -60,17 +72,11 @@ kleinestraatScore.addEventListener("click", function() {
   kleineStraat.innerText = calculateKleineStraat();
 })
 
-
-
-// het woordje functie, functie naam (argumenten) {scope}
-function generateDice() {
-  for (let i = 0; i < diceArray.length; i++) {
-      //maakt gelijk aan een afgerond willekeurig getal tussen de 1 en 6
-      diceArray[i] = Math.floor(Math.random() * 6) + 1;
-  }
-}
+const grotestraatScore = document.getElementById("klik");
+grotestraatScore.addEventListener("click", function() {
+  groteStraat.innerText = calculateGroteStraat();
+})
     //console.log(`index: ${index} diceValue: ${dice[index]}`);
-
 
 function countNumber(num) {
   let result = 0;
@@ -92,95 +98,139 @@ function calculateScoreForNumber(num) {
 function calculateScoreForChance(){
   let result = 0;
   for (let index = 0; index < diceArray.length; index++) {
-    result = result + diceArray[index];
+    result = result += diceArray[index];
   }
-
   return result;  
 }
 
-// Bereken Four of a Kind
-function calculateFourOfaKind(){
-  let result = 0;
-  if (diceArray === 4){
-    result++;
-  }// else {
-    //result = false;
-    return result
-}
-
-// Bereken Yahtzee
-function calculateYahtzee(){
-  let result = 0;
-  if (diceArray === 5){
-    result = 50;
-  }// else {
-    //result = false;
-    return result;
-}
-
-// Bereken Full House
-function calculateFullhouse(){
-  let result = 0;
-  if (diceArray === 3 && diceArray === 2){
-    result = 25;
-  }
-  return result;
-}
-
-// Bereken kleine straat
-function calculateKleineStraat(){
-  let index = 1, difference;
-  let result = 0;
- 
-  while (index < diceArray.length) {
-    difference = diceArray[index - 1] - diceArray[index - 2];
-    if (Math.abs(difference) === 1 && difference === diceArray[index] - diceArray[index - 1]){
-      result = true;
-    }
-    index++
-  }
-  return result;
-    console.log(result);
-}
-
-
-
-
-
-
-
-  
-
-
-/*
-function countingScore(){
-  const eyes = [
-  countEyeAmount(1),
-  countEyeAmount(2),
-  countEyeAmount(3),
-  countEyeAmount(4),
-  countEyeAmount(5),
-  countEyeAmount(6)
-  ];
-
-  return eyes;
-
-}
-
-function countEyeAmount(number){
+//Berekend hoe vaak hetzelfde nummer voorkomt in de array
+Array.prototype.countOfSameNum = function() {
   let count = 0;
-  for(let i = 0; i < diceArray.length; i++){
-    if(diceArray[i] === number) count++;
+  for (let i = 0; i < this.length; ++i) {
+    if (this[i] === this[0]) count++;
   }
   return count;
-}*/
+}
 
+function frequency(array) {
+  let frequency = {};
+  let max = 0; //Max frequency
+  let most; //Houdt Max frequency
+  for (var v in array) {
+    frequency[array[v]] = (frequency[array[v]] || 0) + 1; //frequency wordt groter
+    if (frequency[array[v]] > max) { //Frequency groter dan max?
+      max = frequency[array[v]]; //Update max
+      most = array[v]; //Update result
+    }
+  }
+  return max;
+}
 
+//Kijkt als alle elementen in een array hetzelfde zijn
+function isSame(array) {
+  if (array.every((val, i, arr) => val == arr[0])) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
+//Sorteert array en telt hoeveel dobbelstenen-1 zijn in een straat
+function how_many_straight(array) {
+  let sorted = array.sort();
+  let length = 0;
+  for (let i = 0; i < sorted.length - 1; i++) {
+    if (sorted[i + 1] - sorted[i] === 1) {
+      length += 1;
+    }
+  }
+  return length;
+}
 
+//Berekend score voor een grote straat
+function calculateGroteStraat() {
+    let result = 0;
+    let length = how_many_straight(diceArray);
+    if (length === 4) {
+      result = 40;
+    }
+    return result;
+  }
 
+//Berekend score voor een kleine straat
+function calculateKleineStraat() {
+    let result = 0;
+    let length = how_many_straight(diceArray);
+    if (length >= 3) {
+      result = 30;
+    }
+    return result;
+  }
 
+  //Calculate the score for a fullhouse
+function calculateFullhouse() {
+  let result = 0;
+  let fullhouse = diceArray;
+  let frequency = {};
+  let max = 0; // holds the max frequency.
+  let most; // holds the max frequency element.
+  for (var v in fullhouse) {
+    frequency[fullhouse[v]] = (frequency[fullhouse[v]] || 0) + 1; // increment frequency.
+    if (frequency[fullhouse[v]] > max) {
+      // is this frequency > max so far ?
+      max = frequency[fullhouse[v]]; // update max.
+      most = fullhouse[v]; // update result.
+    }
+    // makes sure there is at least 3 of the same numbers
+    if (max === 3) {
+      fullhouse = $.grep(fullhouse, function(value) {
+        //returns an array of remaining differing numbers
+        return value != most;
+      });
+      //check to see if there are two items in the array and that they are the same score
+      if (isSame(fullhouse) && fullhouse.length === 2) {
+        result = 25;
+      }
+    }
+  }
+  return result;
+}
 
+//Bereken Three of a kind
+function calculateThreeOfaKind() {
+  let result = 0;
+  let isSameNum = frequency(diceArray);
+  if (isSameNum >= 3) {
+    for (var i = 0; i < diceArray.length; i++) {
+     result += diceArray[i];
+    }
+    return result;
+  } else {
+    return result;
+ }
+}
+//Bereken Four of a kind
+function calculateFourOfaKind() {
+  let result = 0;
+  let isSameNum = frequency(diceArray);
+  if (isSameNum >= 4) {
+    for (var i = 0; i < diceArray.length; i++) {
+      result += diceArray[i];
+    }
+    return result;
+  } else {
+    return result;
+ }
+}
+//Berekend Yahtzee
+function calculateYahtzee() {
+  let result = 0;
+  let is_same = isSame(diceArray);
+  if (is_same) {
+    result = 50;
+  }
+  return result;
+}
 
 
 /* Mogelijk volgende stappen:
@@ -189,13 +239,13 @@ function countEyeAmount(number){
 - Als ik op de 'gooien' button klik, dan moet het array worden gevuld met random waarden
 - Zorg dat de waarden in het dice array op het scherm getoond worden (dat zijn dan de ogen op de dobbelstenen)
 - Maak functies om score te berekenen (en dus soms om te bepalen of datgene gegooid is):
-  - 1 t/m 6
-  - 4 of a kind
-  - yahtzee
-  - full house
-  - kleine straat
-  - grote straat
-- laat bij elke worp alle scores zien op het scherm
+  - 1 t/m 6 !
+  - 4 of a kind !
+  - yahtzee ! 
+  - full house ! 
+  - kleine straat *
+  - grote straat *
+- laat bij elke worp alle scores zien op het scherm !
 - maak het mogelijk om na een 'worp' bepaalde dobbelstenen 'vast te zetten' (Dit mag ook  hardcoded, dus een datasteructuur waarin staat wat wordt vastegehouden en waar dus rekening mee wordt gehouden bij het gooien)
 
 */
