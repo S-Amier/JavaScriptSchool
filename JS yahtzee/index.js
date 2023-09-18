@@ -100,7 +100,7 @@ function calculateScoreForChance(){
   for (let index = 0; index < diceArray.length; index++) {
     result = result += diceArray[index];
   }
-  return result;  
+  return result;
 }
 
 //Berekend hoe vaak hetzelfde nummer voorkomt in de array
@@ -231,7 +231,6 @@ function calculateYahtzee() {
   }
   return result;
 }
-
 
 /* Mogelijk volgende stappen:
 
