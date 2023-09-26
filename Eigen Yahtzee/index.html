@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yahtzee Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #dice-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .die {
+            width: 50px;
+            height: 50px;
+            margin: 0 10px;
+            border: 2px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .die.held {
+            background-color: lightgray;
+        }
+        button {
+            margin-top: 20px;
+            font-size: 16px;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Yahtzee Game</h1>
+    <div id="dice-container">
+        <div class="die" onclick="toggleHold(0)">1</div>
+        <div class="die" onclick="toggleHold(1)">2</div>
+        <div class="die" onclick="toggleHold(2)">3</div>
+        <div class="die" onclick="toggleHold(3)">4</div>
+        <div class="die" onclick="toggleHold(4)">5</div>
+    </div>
+    <button id="roll-button">Roll Dice</button>
+    <div>
+        <h2>Score Card</h2>
+        <ul id="score-card">
+            <li><button onclick="recordScore(1)">Ones: <span id="ones-score">0</span></button></li>
+            <li><button onclick="recordScore(2)">Twos: <span id="twos-score">0</span></button></li>
+            <li><button onclick="recordScore(3)">Threes: <span id="threes-score">0</span></button></li>
+            <li><button onclick="recordScore(4)">Fours: <span id="fours-score">0</span></button></li>
+            <li><button onclick="recordScore(5)">Fives: <span id="fives-score">0</span></button></li>
+            <li><button onclick="recordScore(6)">Sixes: <span id="sixes-score">0</span></button></li>
+            <li><button onclick="recordSmallStraight()">Small Straight: <span id="small-straight-score">0</span></button></li>
+            <li><button onclick="recordBigStraight()">Big Straight: <span id="big-straight-score">0</span></button></li>
+        </ul>
+    </div>
+    <script>
+        const dice = document.querySelectorAll('.die');
+        const rollButton = document.getElementById('roll-button');
+        const scoreCard = document.getElementById('score-card');
+        const scores = {
+            ones: 0,
+            twos: 0,
+            threes: 0,
+            fours: 0,
+            fives: 0,
+            sixes: 0,
+            smallStraight: 0,
+            bigStraight: 0,
+        };
+        const heldDice = [false, false, false, false, false];
+
+        rollButton.addEventListener('click', rollDice);
+
+        function rollDice() {
+            dice.forEach((die, index) => {
+                if (!heldDice[index]) {
+                    const randomNumber = Math.floor(Math.random() * 6) + 1;
+                    die.textContent = randomNumber;
+                }
+            });
+        }
+
+        function toggleHold(index) {
+            heldDice[index] = !heldDice[index];
+            dice[index].classList.toggle('held');
+        }
+
+        function recordScore(dieValue) {
+            const count = Array.from(dice).filter((die, index) => {
+                return parseInt(die.textContent) === dieValue && !heldDice[index];
+            }).length;
+            scores[getScoreName(dieValue)] = count * dieValue;
+            updateScoreCard();
+        }
+
+        function recordSmallStraight() {
+            const values = Array.from(dice).map(die => parseInt(die.textContent)).sort();
+            if (values.toString() === '1,2,3,4' || values.toString() === '2,3,4,5' || values.toString() === '3,4,5,6') {
+                scores.smallStraight = 30;
+            }
+            updateScoreCard();
+        }
+
+        function recordBigStraight() {
+            const values = Array.from(dice).map(die => parseInt(die.textContent)).sort();
+            if (values.toString() === '1,2,3,4,5' || values.toString() === '2,3,4,5,6') {
+                scores.bigStraight = 40;
+            }
+            updateScoreCard();
+        }
+
+        function getScoreName(dieValue) {
+            return dieValue === 1 ? 'ones' :
+                dieValue === 2 ? 'twos' :
+                dieValue === 3 ? 'threes' :
+                dieValue === 4 ? 'fours' :
+                dieValue === 5 ? 'fives' :
+                'sixes';
+        }
+
+        function updateScoreCard() {
+            for (const key in scores) {
+                const scoreElement = document.getElementById(`${key}-score`);
+                scoreElement.textContent = scores[key];
+            }
+        }
+    </script>
+</body>
+</html>

@@ -232,6 +232,11 @@ function calculateYahtzee() {
   return result;
 }
 
+function toggleHold(index) {
+  diceArray[index] = !diceArray[index];
+  dice[index].classList.toggle('held');
+}
+
 /* Mogelijk volgende stappen:
 
 - functie die dice array met random getallen (tussen 1 en 6) vult
