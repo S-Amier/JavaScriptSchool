@@ -1,17 +1,50 @@
 // variabele maken waar 5 getallen in zitten. 
 const diceArray = [1, 5, 1, 2, 3];
+const holdArray =[false,false,true,false,true];
 //console.log(countingScore());
 document.getElementById("klik").addEventListener("click", generateDice);
 console.log(generateDice());
+
 
 // het woordje functie, functie naam (argumenten) {scope}
 function generateDice() {
   for (let i = 0; i < diceArray.length; i++) {
       //maakt gelijk aan een afgerond willekeurig getal tussen de 1 en 6
-      diceArray[i] = Math.floor(Math.random() * 6) + 1;
+      if(holdArray[i] == false){
+        diceArray[i] = Math.floor(Math.random() * 6) + 1;
+      }
   }
 }
+// Nodig om dobbelstenen vast te zetten
+const dice = document.querySelectorAll('.die');
 
+//Laat score zien bij alle dobbelstenen
+const diceOne = document.getElementById("klik");
+diceOne.addEventListener("click", function() {
+  diceFirst.innerHTML = diceArray[0];
+})
+
+const diceTwo = document.getElementById("klik");
+diceTwo.addEventListener("click", function() {
+  diceSecond.innerHTML = diceArray[1];
+})
+
+const diceThree = document.getElementById("klik");
+diceThree.addEventListener("click", function() {
+  diceThird.innerHTML = diceArray[2];
+})
+
+const diceFour = document.getElementById("klik");
+diceFour.addEventListener("click", function() {
+  diceFourth.innerHTML = diceArray[3];
+})
+
+const diceFive = document.getElementById("klik");
+diceFive.addEventListener("click", function() {
+  diceFifth.innerHTML = diceArray[4];
+})
+
+// single scores
 const onesScore = document.getElementById("klik");
 onesScore.addEventListener("click", function() {
   ones.innerText = calculateScoreForNumber(1);
@@ -47,6 +80,7 @@ chanceScore.addEventListener("click", function() {
   chance.innerText = calculateScoreForChance();
 })
 
+//speciale scores
 const threeOfaKindScore = document.getElementById("klik");
 threeOfaKindScore.addEventListener("click", function(){
   threeOfaKind.innerText = calculateThreeOfaKind();
@@ -76,7 +110,6 @@ const grotestraatScore = document.getElementById("klik");
 grotestraatScore.addEventListener("click", function() {
   groteStraat.innerText = calculateGroteStraat();
 })
-    //console.log(`index: ${index} diceValue: ${dice[index]}`);
 
 function countNumber(num) {
   let result = 0;
@@ -232,10 +265,18 @@ function calculateYahtzee() {
   return result;
 }
 
-function toggleHold(index) {
-  diceArray[index] = !diceArray[index];
-  dice[index].classList.toggle('held');
+//Gets the values of all the held die and places them in an array
+function save_held_dice() {
+  let saveNum = [];
+  let heldDice = $(".hold").toArray();
+  for (var i = 0; i < heldDice.length; i += 1) {
+    saveNum.push(parseInt(heldDice[i].innerHTML));
+  }
+  return saveNum;
 }
+
+
+
 
 /* Mogelijk volgende stappen:
 
@@ -247,8 +288,8 @@ function toggleHold(index) {
   - 4 of a kind !
   - yahtzee ! 
   - full house ! 
-  - kleine straat *
-  - grote straat *
+  - kleine straat !
+  - grote straat !
 - laat bij elke worp alle scores zien op het scherm !
 - maak het mogelijk om na een 'worp' bepaalde dobbelstenen 'vast te zetten' (Dit mag ook  hardcoded, dus een datasteructuur waarin staat wat wordt vastegehouden en waar dus rekening mee wordt gehouden bij het gooien)
 
