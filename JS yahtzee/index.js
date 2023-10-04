@@ -21,27 +21,27 @@ const dice = document.querySelectorAll('.die');
 //Laat score zien bij alle dobbelstenen
 const diceOne = document.getElementById("klik");
 diceOne.addEventListener("click", function() {
-  diceFirst.innerHTML = diceArray[0];
+  diceFirst.innerText = diceArray[0];
 })
 
 const diceTwo = document.getElementById("klik");
 diceTwo.addEventListener("click", function() {
-  diceSecond.innerHTML = diceArray[1];
+  diceSecond.innerText = diceArray[1];
 })
 
 const diceThree = document.getElementById("klik");
 diceThree.addEventListener("click", function() {
-  diceThird.innerHTML = diceArray[2];
+  diceThird.innerText = diceArray[2];
 })
 
 const diceFour = document.getElementById("klik");
 diceFour.addEventListener("click", function() {
-  diceFourth.innerHTML = diceArray[3];
+  diceFourth.innerText = diceArray[3];
 })
 
 const diceFive = document.getElementById("klik");
 diceFive.addEventListener("click", function() {
-  diceFifth.innerHTML = diceArray[4];
+  diceFifth.innerText = diceArray[4];
 })
 
 // single scores
@@ -255,6 +255,7 @@ function calculateFourOfaKind() {
     return result;
  }
 }
+
 //Berekend Yahtzee
 function calculateYahtzee() {
   let result = 0;
@@ -276,8 +277,6 @@ function save_held_dice() {
 }
 
 
-
-
 /* Mogelijk volgende stappen:
 
 - functie die dice array met random getallen (tussen 1 en 6) vult
@@ -292,5 +291,4 @@ function save_held_dice() {
   - grote straat !
 - laat bij elke worp alle scores zien op het scherm !
 - maak het mogelijk om na een 'worp' bepaalde dobbelstenen 'vast te zetten' (Dit mag ook  hardcoded, dus een datasteructuur waarin staat wat wordt vastegehouden en waar dus rekening mee wordt gehouden bij het gooien)
-
 */

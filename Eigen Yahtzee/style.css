@@ -1,0 +1,41 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #333;
+}
+
+.dice-container {
+    display: flex;
+    justify-content: center;
+}
+
+.die {
+    width: 60px;
+    height: 60px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    line-height: 60px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.die.held {
+    background-color: #e74c3c;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+#score-output {
+    margin-top: 20px;
+    font-size: 24px;
+}
