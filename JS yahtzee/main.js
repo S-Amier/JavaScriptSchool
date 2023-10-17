@@ -1,5 +1,6 @@
 //dice values
 const dice = [0, 0, 0, 0, 0];
+const heldDice = [false, false, false, false, false];
 
 //event listeren om dobbelsteen te rollen
 document.getElementById("klik").addEventListener("click", rollDice);
@@ -12,7 +13,7 @@ document.querySelectorAll(".die").forEach(die => {
 // Function to roll the dice
 function rollDice() {
   for (let i = 0; i < dice.length; i++) {
-    if (!dice[i].held) {
+    if (!heldDice[i]) {
       dice[i] = Math.floor(Math.random() * 6) + 1;
     }
   }
@@ -22,6 +23,9 @@ function rollDice() {
 function toggleHold(event) {
   const die = event.target;
   die.classList.toggle("held");
+  for (let i = 0; i < dice.length; i++) {
+  heldDice[i] = !heldDice[i];
+}
 }
 
 //Laat score zien bij alle dobbelstenen
@@ -222,12 +226,6 @@ function calculateFullHouse() {
 // Example usage
 rollDice();
 console.log("Rolled dice:", dice);
-
-holdDie(1); // Hold the second die
-console.log("Holding the second die:", dice);
-
-releaseDie(1); // Release the second die
-console.log("Releasing the second die:", dice);
 
 console.log("Three of a Kind:", calculateThreeOfaKind());
 console.log("Four of a Kind:", calculateFourOfaKind());
