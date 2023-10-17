@@ -23,9 +23,9 @@ function rollDice() {
 function toggleHold(event) {
   const die = event.target;
   die.classList.toggle("held");
-  for (let i = 0; i < dice.length; i++) {
-  heldDice[i] = !heldDice[i];
-}
+  for (let index = 0; index < heldDice.length; index++) {
+  heldDice[index] = !heldDice[index];
+  }
 }
 
 //Laat score zien bij alle dobbelstenen
