@@ -1,11 +1,14 @@
-body {
-    text-align: center;
-    font-family: Arial, sans-serif;
-    background:url(yahtzee.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+html, body{
+    background-color: #cde2e3;
 }
-
+#gameContainer{
+    display:flex;
+    width: 100%;
+    height: 100%;
+    margin-top: 40px;
+    align-content: center;
+    justify-content: center;
+}
 .table{
     display: table;
     border-collapse: collapse;
@@ -62,41 +65,69 @@ body {
     color: rgb(4, 83, 83);
     font-weight:bold;
 }
-
+#totalCaption{
+    font-size: 18px;
+}
+#bonusCaption{
+    border-bottom: 2px solid rgb(4, 83, 83);
+}
+#sumCaption{
+    border-top: 2px solid rgb(4, 83, 83);
+}
+#bonusCaption>*,#sumCaption > * {
+    font-weight: bold;
+}
 #board{
-    width: 27.2%;
+    background:url(yahtzee.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 60%;
     min-height: 80%;
-    padding-top: 5px;
-    margin: 30px;
+    margin: 20px;
     border: 20px solid #e7e7e7;
     border-radius: 10px;
     background-color: rgba(0,0,0,0.4);
     background-blend-mode: darken;
 }
-
-.dice-container {
+#playArea {
+    min-height:  80%;
     display: flex;
+    justify-content: flex-end;
+}
+.dice-container{
+    height: 10%;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    gap:2%;
+    background: #cd0473;
+    margin-top: auto;
 }
-
-.die {
-    width: 60px;
-    height: 60px;
-    background-color: darkcyan;
-    color: #fff;
-    font-size: 24px;
-    text-align: center;
-    line-height: 60px;
-    margin: 10px;
+.dice {
+    max-width: 40px;
+    max-height: 40px;
+    border-radius: 10px;
+    transition: all 0.4s linear;
+    z-index: 1000;
+}
+.face {
+    width: 100%;
+    height: 100%;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition:all 0.4s linear;
 }
-
-.die.held {
-    background-color: rgb(216, 144, 192);
+.face:hover{
+    transform: scale(1.1);
 }
-
-#klik {
+#endGameMessage {
+    align-self: center;
+    color: yellow;
+    font-size: 80px;
+    width: 100%;
+    text-align: center;
+    transform: translate(5%);
+}
+#roll {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -108,15 +139,6 @@ body {
     background-size: cover;
     cursor: pointer;
 }
-#klik:hover {
+#roll:hover {
     transform: scale(1.1);
-    transition: 0.4s;
 }
-
-/*button {
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 18px;
-}
-
-

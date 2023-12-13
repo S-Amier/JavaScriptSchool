@@ -2,22 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content ="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Yahtzee Game</title>
+    <title>Yahtzee</title>
 </head>
 <body>
-    <h1>Yahtzee Game</h1>
-    <div class="dice-container">
+    <div id="gameContainer">
+    <div id="board">
+        <div class="dice-container" id="player2Container"></div>
+            <div id="playArea">
+                <div id="endGameMessage"></div>
+                <button id="klik" class="image-button">Roll</button>
+            </div>
+        <div class="dice-container" id="player1Container">
         <div class="die" id="die1"></div>
         <div class="die" id="die2"></div>
         <div class="die" id="die3"></div>
         <div class="die" id="die4"></div>
         <div class="die" id="die5"></div>
     </div>
-    <button id="roll-btn">Roll Dice</button>
-    <button id="score-btn">Score</button>
-    <div id="score-output"></div>
+    </div>
+    </div>
+    <div id="scoreTable" class="table">
+        <div class="header">
+            <div class="header-cell"></div>
+            <div class="header-cell">Player 1</div>
+        </div>
+        <div class="row">
+            <div class="cell">Ones</div>
+            <div class="cell" id="ones" data-row="1" data-column="1">0</div>
+        </div>
+        <div class="row">
+            <div class="cell">Twos</div>
+            <div class="cell" id="twos" data-row="2" data-column="1">0</div>
+        </div>
+        <div class="row">
+            <div class="cell">Threes</div>
+            <div class="cell" id="threes" data-row="3" data-column="1">0</div>
+        </div>
+        <div class="row">
+            <div class="cell">Fours</div>
+            <div class="cell" id="fours" data-row="4" data-column="1">0</div>
+        </div>
+        <div class="row">
+            <div class="cell">Fives</div>
+            <div class="cell" id="fives" data-row="5" data-column="1">0</div>
+        </div>
+        <div class="row">
+            <div class="cell">Sixes</div>
+            <div class="cell" id="sixes" data-row="6" data-column="1">0</div>
+        </div>
+        <div class="row">
+            <div class="cell">Chance</div>
+            <div class="cell" id="chance" data-row="9" data-column="1"></div>
+        </div>
+        <div class="row">
+            <div class="cell">Three of a kind</div>
+            <div class="cell" id="threeOfaKind" data-row="10" data-column="1"></div>
+        </div>
+        <div class="row">
+            <div class="cell">Four of a kind</div>
+            <div class="cell" id="fourOfaKind" data-row="11" data-column="1"></div>
+        </div>
+        <div class="row">
+            <div class="cell">Full House</div>
+            <div class="cell" id="fullhouse" data-row="12" data-column="1"></div>
+        </div>
+        <div class="row">
+            <div class="cell">Kleine Straat</div>
+            <div class="cell" id="kleineStraat" data-row="13" data-column="1"></div>
+        </div>
+        <div class="row">
+            <div class="cell">Grote Straat</div>
+            <div class="cell" id="groteStraat" data-row="14" data-column="1"></div>
+        </div>
+        <div class="row">
+            <div class="cell">Yahtzee</div>
+            <div class="cell" id="yahtzee" data-row="15" data-column="1"></div>
+        </div>
+        <div class="row">
+            <div class="cell" id="totalCaption">TOTAL SCORE</div>
+            <div class="cell" id="total" data-row="16" data-column="1"></div>
+        </div>
+    </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

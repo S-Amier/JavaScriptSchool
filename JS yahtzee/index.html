@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,15 +8,22 @@
     <title>Yahtzee</title>
 </head>
 <body>
-    <h1>Yahtzee Game</h1>
-    <button id="klik">Roll Dice</button>
-        <div id="dice-container">
-            <div class="die" id="diceFirst">1</div>
-            <div class="die" id="diceSecond">2</div>
-            <div class="die" id="diceThird">3</div>
-            <div class="die" id="diceFourth">4</div>
-            <div class="die" id="diceFifth">5</div>
+    <div id="gameContainer">
+    <div id="board">
+        <div class="dice-container" id="player2Container"></div>
+        <div id="playArea">
+            <div id="engGameMessage"></div>
+            <button id="klik" class="image-button">ROLL</button>
         </div>
+    <div class="dice-container" id="dice-Container">
+        <div class="die" id="diceFirst">1</div>
+        <div class="die" id="diceSecond">2</div>
+        <div class="die" id="diceThird">3</div>
+        <div class="die" id="diceFourth">4</div>
+        <div class="die" id="diceFifth">5</div>
+    </div>
+    </div>
+    </div>
     <table>
         <tr>
             <td>Ones</td>
